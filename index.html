@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/js/allcsa.js"></script>
+  <link rel="stylesheet" href="/css/cwasa.css">
+  <title>Mudra</title>
+  <script language="javascript">
+    // Initial configuration
+    var initCfg = {
+      "avsbsl": ["luna", "siggi", "anna", "marc", "francoise"],
+      "avSettings": { "avList": "avsbsl", "initAv": "marc" }
+    };
+    // global variable to store the sigmal list
+    var sigmlList = null;
+    // global variable to tell if avatar is ready or not
+    var tuavatarLoaded = false;
+    var playerAvailableToPlay = true;
+  </script>
+</head>
+
+<body onload="CWASA.init(initCfg);">
+  <script language="javascript">
+    console.log("hello");
+    function playText(stext) {
+      CWASA.playSiGMLText(stext);
+    }
+
+    // sets url for sigml
+    function setSiGMLURL(sigmlURL) {
+      console.log("hello");
+      var loc = window.location.href;
+      var locDir = loc.substring(0, loc.lastIndexOf('/'));
+      // console.log("SiGML: "+sigmlURL);
+      // console.log("Location Dir: "+locDir);
+      sigmlURL = locDir + "/" + sigmlURL;
+      // console.log("here");
+      console.log("URL " + sigmlURL);
+      document.getElementById("URLText").value = sigmlURL;
+      return sigmlURL;
+    }
+    // starts the player animation
+    function startPlayer(sigmlURL) {
+      sigmlURL = setSiGMLURL(sigmlURL);
+      console.log("URL " + sigmlURL);
+      // Equivalent to click on Sign button
+      CWASA.getLogger("myLog", "warn");
+      CWASA.playSiGMLURL(sigmlURL);
+      CWASA.getLogger("myLog", "warn");
+    }
+  </script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
